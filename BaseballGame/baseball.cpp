@@ -52,19 +52,29 @@ public:
 		return strikes;
 	}
 
+	int getBalls(const string& guessNumber)
+	{
+		int balls = 0;
+		for(int n = 0; n < guessNumber.length(); n++)
+		{
+			for(int m = 0; m < question.length(); m++)
+			{
+				if (n == m) 
+					continue;
+				if (guessNumber[n] == question[m])
+					balls++;
+			}
+		}
+		return balls;
+	}
+
 	GuessResult guess(const string& guessNumber)
 	{
 		assertIllegalArgument(guessNumber);
 		if (guessNumber == question)
 			return { true, 3, 0 };
 
-		int balls = 0;
-		if (guessNumber[1] == question[2])
-			balls++;
-		if (guessNumber[2] == question[1])
-			balls++;
-
-		return { false, getStrikes(guessNumber), balls };
+		return { false, getStrikes(guessNumber), getBalls(guessNumber)};
 	}
 
 private:
