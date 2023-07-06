@@ -41,13 +41,24 @@ public:
 		}
 	}
 
+	int getStrikes(const string& guessNumber)
+	{
+		int strikes = 0;
+		for(int n = 0; n < guessNumber.length(); n++)
+		{
+			if (guessNumber[n] == question[n])
+				strikes++;
+		}
+		return strikes;
+	}
+
 	GuessResult guess(const string& guessNumber)
 	{
 		assertIllegalArgument(guessNumber);
 		if (guessNumber == question)
 			return { true, 3, 0 };
 
-		return { false, 2, 0 };
+		return { false, getStrikes(guessNumber), 0 };
 	}
 
 private:
