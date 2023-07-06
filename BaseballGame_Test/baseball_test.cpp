@@ -48,3 +48,34 @@ TEST_F(BaseballFixture, Return1strikes2balls) {
 	EXPECT_EQ(1, result.strikes);
 	EXPECT_EQ(2, result.balls);
 }
+
+TEST_F(BaseballFixture, ComplexTests) {
+	GuessResult result = game.guess("456");
+	EXPECT_FALSE(result.solved);
+	EXPECT_EQ(0, result.strikes);
+	EXPECT_EQ(0, result.balls);
+	result = game.guess("439");
+	EXPECT_FALSE(result.solved);
+	EXPECT_EQ(0, result.strikes);
+	EXPECT_EQ(1, result.balls);
+	result = game.guess("351");
+	EXPECT_FALSE(result.solved);
+	EXPECT_EQ(0, result.strikes);
+	EXPECT_EQ(2, result.balls);
+	result = game.guess("145");
+	EXPECT_FALSE(result.solved);
+	EXPECT_EQ(1, result.strikes);
+	EXPECT_EQ(0, result.balls);
+	result = game.guess("135");
+	EXPECT_FALSE(result.solved);
+	EXPECT_EQ(1, result.strikes);
+	EXPECT_EQ(1, result.balls);
+	result = game.guess("213");
+	EXPECT_FALSE(result.solved);
+	EXPECT_EQ(1, result.strikes);
+	EXPECT_EQ(2, result.balls);
+	result = game.guess("143");
+	EXPECT_FALSE(result.solved);
+	EXPECT_EQ(2, result.strikes);
+	EXPECT_EQ(0, result.balls);
+}
