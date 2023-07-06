@@ -58,7 +58,13 @@ public:
 		if (guessNumber == question)
 			return { true, 3, 0 };
 
-		return { false, getStrikes(guessNumber), 0 };
+		int balls = 0;
+		if (guessNumber[1] == question[2])
+			balls++;
+		if (guessNumber[2] == question[1])
+			balls++;
+
+		return { false, getStrikes(guessNumber), balls };
 	}
 
 private:
